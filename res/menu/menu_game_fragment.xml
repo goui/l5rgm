@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_game_launch_session"
+        android:icon="@drawable/ic_input_white_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_game_launch_session"/>
+    
+    <item
+        android:id="@+id/action_game_fragment_make_discoverable"
+        android:icon="@drawable/ic_visibility_white_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_game_make_discoverable"/>
+    
+    <item
+        android:id="@+id/action_game_fragment_player_search"
+        android:icon="@drawable/ic_pageview_white_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_game_player_search"/>
+
+</menu>
