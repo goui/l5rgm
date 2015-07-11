@@ -19,9 +19,11 @@ public class Character extends Observable {
 
 	private int _pendingXpPoints;
 
-	// TODO _school;
+	// TODO character school
+	// private int _school;
 
-	// TODO _insight;
+	// TODO character insight
+	// private int _insight;
 
 	private int _honor;
 
@@ -222,7 +224,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromStamina(int stamina_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp stamina
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -242,7 +244,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromWillPower(int willPower_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp willpower
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -273,7 +275,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromStrength(int strength_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp strength
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -293,7 +295,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromPerception(int perception_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp perception
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -324,7 +326,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromReflexes(int reflexes_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp reflexes
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -344,7 +346,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromAwareness(int awareness_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp awareness
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -375,7 +377,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromAgility(int agility_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp agility
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -395,7 +397,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromIntelligence(int intelligence_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp intelligence
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -416,7 +418,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromVoid(int voidPoints_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp void
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
@@ -463,7 +465,7 @@ public class Character extends Observable {
 	}
 
 	private void computePendingXpPointsFromSkillAddition(Skill skill_p) {
-		// TODO Auto-generated method stub
+		// TODO character pending xp skill add
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);

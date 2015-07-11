@@ -11,10 +11,10 @@ public class Skill implements Observer {
 
 	private int _statIndex;
 
-	// TODO
+	// TODO skill roll
 	// private int _roll;
 
-	// TODO
+	// TODO skill abilities
 	// private int _abilities;
 
 	public Skill(String name_p, int statIndex_p, Character character_p) {

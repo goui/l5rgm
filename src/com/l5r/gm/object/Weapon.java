@@ -2,19 +2,19 @@ package com.l5r.gm.object;
 
 public class Weapon {
 
-	// TODO
+	// TODO weapon type
 	// private String _type;
 
-	// TODO
+	// TODO weapon attack roll
 	// private int _attackRoll;
 
-	// TODO
+	// TODO weapon damage roll
 	// private int _damageRoll;
 
-	// TODO
+	// TODO weapon bonus
 	// private int _bonus;
 
-	// TODO
+	// TODO weapon notes
 	// private String _notes;
 
 	@Override
@@ -22,14 +22,14 @@ public class Weapon {
 		boolean equals = false;
 		if (o_p instanceof Arrow) {
 			// Weapon obj = (Weapon) o_p;
-			// TODO
+			// TODO weapon equals
 		}
 		return equals;
 	}
 
 	@Override
 	public String toString() {
-		// TODO
+		// TODO weapon tostring
 		return "";
 	}
 }

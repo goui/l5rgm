@@ -2,7 +2,7 @@ package com.l5r.gm.object;
 
 public class Arrow {
 
-	// TODO
+	// TODO arrow type
 	// private int _type;
 
 	private int _damage;
@@ -33,7 +33,7 @@ public class Arrow {
 
 	@Override
 	public boolean equals(Object o_p) {
-		// TODO
+		// TODO arrow equals
 		boolean equals = false;
 		if (o_p instanceof Arrow) {
 			Arrow obj = (Arrow) o_p;
@@ -44,7 +44,7 @@ public class Arrow {
 
 	@Override
 	public String toString() {
-		// TODO
+		// TODO arrow tostring
 		return "Arrow: (" + _quantity + ", " + _damage + "dmg)";
 	}
 }

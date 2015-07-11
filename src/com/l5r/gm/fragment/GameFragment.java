@@ -191,7 +191,8 @@ public class GameFragment extends Fragment {
 		// When DeviceListActivity returns with a device to connect
 		case Constants.REQUEST_CONNECT_DEVICE_INSECURE:
 			if (resultCode_p == Activity.RESULT_OK) {
-				// TODO
+				String address = data_p.getStringExtra(Constants.DEVICE_ADDRESS);
+				openCreatePlayerDialog(address);
 			}
 			break;
 
@@ -256,7 +257,7 @@ public class GameFragment extends Fragment {
 	}
 
 	private void launchSession() {
-		// TODO Auto-generated method stub
+		// TODO game fragment launch session
 
 	}
 }

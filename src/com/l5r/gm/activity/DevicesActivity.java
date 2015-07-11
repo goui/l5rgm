@@ -72,8 +72,6 @@ public class DevicesActivity extends Activity {
 	private OnItemClickListener _onDeviceClickListener = new OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> adapter_p, View view_p, int position_p, long id_p) {
-			// TODO Auto-generated method stub
-			adapter_p.getItemAtPosition(position_p);
 
 			// Cancel discovery because it's costly and we're about to
 			// connect
