@@ -34,6 +34,8 @@ public class GameFragment extends Fragment {
 
 	private Game _game;
 
+	private int _gamePosition;
+
 	private TextView _txtNbOfSessions;
 
 	private TextView _txtNoPlayers;
@@ -63,7 +65,6 @@ public class GameFragment extends Fragment {
 		if (_bluetoothAdapter == null) {
 			Activity activity = getActivity();
 			Toast.makeText(activity, "Bluetooth is not available", Toast.LENGTH_SHORT).show();
-			activity.finish();
 		}
 	}
 
@@ -82,9 +83,9 @@ public class GameFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState_p) {
 		super.onActivityCreated(savedInstanceState_p);
 
-		int position = getArguments().getInt(Constants.GAME_POSITION);
-		_game = GamesModel.getInstance().getGames().get(position);
-		getActivity().setTitle(_game.getName());
+		_gamePosition = getArguments().getInt(Constants.GAME_POSITION);
+		_game = GamesModel.getInstance().getGames().get(_gamePosition);
+		getActivity().getActionBar().setTitle(_game.getName());
 		_txtNbOfSessions.setText(_game.getNbOfSessions() + " session"
 				+ (_game.getNbOfSessions() == 1 ? "" : "s") + " played.");
 
@@ -93,7 +94,7 @@ public class GameFragment extends Fragment {
 		_listPlayers.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent_p, View view_p, int position_p, long id_p) {
-				_callback.onPlayerSelected(position_p);
+				_callback.onPlayerSelected(_gamePosition, position_p);
 			}
 		});
 
@@ -137,9 +138,7 @@ public class GameFragment extends Fragment {
 			if (_areTherePlayers) {
 				launchSession();
 			} else {
-				Toast toast = Toast.makeText(getActivity(), R.string.no_players_found,
-						Toast.LENGTH_SHORT);
-				toast.show();
+				Toast.makeText(getActivity(), R.string.no_players_found, Toast.LENGTH_SHORT).show();
 			}
 			return true;
 		case R.id.action_game_fragment_make_discoverable:
@@ -180,7 +179,7 @@ public class GameFragment extends Fragment {
 	public void onActivityResult(int requestCode_p, int resultCode_p, Intent data_p) {
 		switch (requestCode_p) {
 
-		// When DeviceListActivity returns with a device to connect
+		// When DevicesActivity returns with a device to connect
 		case Constants.REQUEST_CONNECT_DEVICE_SECURE:
 			if (resultCode_p == Activity.RESULT_OK) {
 				String address = data_p.getStringExtra(Constants.DEVICE_ADDRESS);
@@ -188,7 +187,7 @@ public class GameFragment extends Fragment {
 			}
 			break;
 
-		// When DeviceListActivity returns with a device to connect
+		// When DevicesActivity returns with a device to connect
 		case Constants.REQUEST_CONNECT_DEVICE_INSECURE:
 			if (resultCode_p == Activity.RESULT_OK) {
 				String address = data_p.getStringExtra(Constants.DEVICE_ADDRESS);
@@ -245,15 +244,20 @@ public class GameFragment extends Fragment {
 	protected void createPlayer(String name_p, String address_p) {
 		Player player = new Player(name_p);
 		player.setMACAddress(address_p);
-		_game.addPlayer(player);
 
-		_listPlayersAdapter.notifyDataSetChanged();
-		updateTextNoPlayersVisibility();
+		if (!_game.getPlayers().contains(player)) {
+			_game.addPlayer(player);
+
+			_listPlayersAdapter.notifyDataSetChanged();
+			updateTextNoPlayersVisibility();
+		} else {
+			Toast.makeText(getActivity(), R.string.player_already_added, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void displaySearchList() {
-		Intent serverIntent = new Intent(getActivity(), DevicesActivity.class);
-		startActivityForResult(serverIntent, Constants.REQUEST_CONNECT_DEVICE_SECURE);
+		Intent intent = new Intent(getActivity(), DevicesActivity.class);
+		startActivityForResult(intent, Constants.REQUEST_CONNECT_DEVICE_SECURE);
 	}
 
 	private void launchSession() {

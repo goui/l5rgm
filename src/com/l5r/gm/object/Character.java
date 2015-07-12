@@ -13,7 +13,7 @@ public class Character extends Observable {
 
 	private int _rank;
 
-	private EClan _clan;
+	private Clan _clan;
 
 	private int _xp;
 
@@ -75,10 +75,10 @@ public class Character extends Observable {
 
 	private List<Trait> _disadvantages;
 
-	public Character(String firstName_p, String lastName_p, EClan clan_p) {
+	public Character(String firstName_p, String lastName_p, Clan clan_p) {
 		_firstName = firstName_p;
-		_lastName = lastName_p;
 		_clan = clan_p;
+		_lastName = lastName_p;
 		_rank = 1;
 		_statistics = new int[Constants.NB_OF_STATS];
 	}
@@ -101,7 +101,7 @@ public class Character extends Observable {
 		notifyObservers(Constants.RANK_UP);
 	}
 
-	public EClan getClan() {
+	public Clan getClan() {
 		return _clan;
 	}
 

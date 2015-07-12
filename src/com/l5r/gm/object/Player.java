@@ -35,10 +35,9 @@ public class Player {
 	@Override
 	public boolean equals(Object o_p) {
 		boolean equals = false;
-		if (o_p instanceof Arrow) {
+		if (o_p instanceof Player) {
 			Player obj = (Player) o_p;
-			equals = obj.getName().equals(_name) && obj.getMACAddress().equals(_macAddress)
-					&& obj.getCharacter().equals(_character);
+			equals = obj.getMACAddress().equals(_macAddress);
 		}
 		return equals;
 	}

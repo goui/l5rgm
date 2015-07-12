@@ -60,7 +60,7 @@ public class NavigationDrawerFragment extends Fragment {
 	private View _fragmentContainerView;
 
 	private int _currentSelectedPosition = 0;
-	private boolean _fromSavedInstanceState;
+	// private boolean _fromSavedInstanceState;
 	private boolean _userLearnedDrawer;
 
 	private List<DrawerItem> _drawerItems;
@@ -82,7 +82,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 		if (savedInstanceState != null) {
 			_currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
-			_fromSavedInstanceState = true;
+			// _fromSavedInstanceState = true;
 		}
 
 		// Select either the default item (0) or the last selected item.
@@ -275,7 +275,7 @@ public class NavigationDrawerFragment extends Fragment {
 		// showGlobalContextActionBar, which controls the top-left area of the
 		// action bar.
 		if (_drawerLayout != null && isDrawerOpen()) {
-			inflater.inflate(R.menu.main, menu);
+			inflater.inflate(R.menu.menu_main_activity, menu);
 			showGlobalContextActionBar();
 		}
 		super.onCreateOptionsMenu(menu, inflater);

@@ -7,22 +7,36 @@
     <string name="name">Name:</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="randomize">Randomize</string>
     <string name="no_games_found">No games found.</string>
     <string name="no_players_found">No players found.</string>
+    <string name="player_already_added">Player already added</string>
     <string name="no_character_found">No character found.</string>
     <string name="paired_devices">Paired devices</string>
     <string name="other_devices">Other devices</string>
     <string name="no_device_found">No device found.</string>
     <string name="select_device">Select device.</string>
     <string name="scan">Scan</string>
+    <string name="create_character">Create character</string>
+    <string name="see_character">See character</string>
     <string name="scanning">Scanning</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_image_content_description">Navigation drawer item</string>
     
-    <string name="action_games_create">Create new game</string>
-    <string name="action_game_player_search">Search for players</string>
-    <string name="action_game_make_discoverable">Make me discoverable</string>
-    <string name="action_game_launch_session">Launch a session</string>
+    <string name="action_games_fragment_create">Create new game</string>
+    <string name="action_game_fragment_player_search">Search for players</string>
+    <string name="action_game_fragment_make_discoverable">Make me discoverable</string>
+    <string name="action_game_fragment_launch_session">Launch a session</string>
+    <string name="action_character_activity_ok">Confirm modifications</string>
+    <string name="action_character_activity_cancel">Cancel modifications</string>
+    
+    
+
+    <string name="title_activity_character">CharacterActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

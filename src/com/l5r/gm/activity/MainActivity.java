@@ -11,6 +11,7 @@ import com.l5r.gm.R;
 import com.l5r.gm.fragment.GameFragment;
 import com.l5r.gm.fragment.GamesFragment;
 import com.l5r.gm.fragment.NavigationDrawerFragment;
+import com.l5r.gm.fragment.PlayerFragment;
 import com.l5r.gm.listener.OnGameSelectedListener;
 import com.l5r.gm.listener.OnPlayerSelectedListener;
 import com.l5r.gm.model.Constants;
@@ -68,7 +69,7 @@ public class MainActivity extends Activity implements
 			// Only show items in the action bar relevant to this screen
 			// if the drawer is not showing. Otherwise, let the drawer
 			// decide what to show in the action bar.
-			getMenuInflater().inflate(R.menu.navigation_drawer, menu);
+			getMenuInflater().inflate(R.menu.menu_navigation_drawer, menu);
 			restoreActionBar();
 			return true;
 		}
@@ -98,9 +99,9 @@ public class MainActivity extends Activity implements
 	}
 
 	@Override
-	public void onGameSelected(int position_p) {
+	public void onGameSelected(int gamePosition_p) {
 		Bundle bundle = new Bundle();
-		bundle.putInt(Constants.GAME_POSITION, position_p);
+		bundle.putInt(Constants.GAME_POSITION, gamePosition_p);
 		GameFragment gameFragment = new GameFragment();
 		gameFragment.setArguments(bundle);
 		getFragmentManager().beginTransaction().replace(R.id.container, gameFragment)
@@ -108,9 +109,14 @@ public class MainActivity extends Activity implements
 	}
 
 	@Override
-	public void onPlayerSelected(int position_p) {
-		// TODO main activity on player selected
-
+	public void onPlayerSelected(int gamePosition_p, int playerPosition_p) {
+		Bundle bundle = new Bundle();
+		bundle.putInt(Constants.GAME_POSITION, gamePosition_p);
+		bundle.putInt(Constants.PLAYER_POSITION, playerPosition_p);
+		PlayerFragment playerFragment = new PlayerFragment();
+		playerFragment.setArguments(bundle);
+		getFragmentManager().beginTransaction().replace(R.id.container, playerFragment)
+				.addToBackStack(null).commit();
 	}
 
 	@Override

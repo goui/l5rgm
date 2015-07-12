@@ -55,7 +55,7 @@ public class GamesFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState_p) {
 		super.onActivityCreated(savedInstanceState_p);
 
-		getActivity().setTitle(FRAGMENT_TITLE);
+		getActivity().getActionBar().setTitle(FRAGMENT_TITLE);
 		_listGamesAdapter = new GamesListAdapter(getActivity());
 		_listGames.setAdapter(_listGamesAdapter);
 		_listGames.setOnItemClickListener(new OnItemClickListener() {

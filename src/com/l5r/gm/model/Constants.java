@@ -31,9 +31,11 @@ public class Constants {
 	public static final int SHADOWLAND_TAINT_CHANGED = 7;
 
 	public static final String GAME_POSITION = "game_position";
+	public static final String PLAYER_POSITION = "player_position";
 	public static final String MENU_ITEM_POSITION = "menu_item_position";
 	public static final String DEVICE_NAME = "device_name";
 	public static final String DEVICE_ADDRESS = "device_address";
+	public static final String IS_CHARACTER_NULL = "is_character_null";
 
 	// Intent request codes
 	public static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
@@ -41,5 +43,6 @@ public class Constants {
 	public static final int REQUEST_ENABLE_BT = 3;
 	public static final int REQUEST_DISCOVERABLE = 4;
 	public static final int DISCOVERABLE_DURATION = 300;
+	public static final int REQUEST_CHARACTER_MODIFICATION = 5;
 
 }

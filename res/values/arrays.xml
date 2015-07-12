@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="clans">
+        <item>Crab</item>
+        <item>Crane</item>
+        <item>Dragon</item>
+        <item>Lion</item>
+        <item>Mantis</item>
+        <item>Phoenix</item>
+        <item>Scorpion</item>
+        <item>Unicorn</item>
+    </string-array>
+    <string-array name="crab_clan">
+        <item>Hida</item>
+        <item>Hiruma</item>
+        <item>Kaiu</item>
+        <item>Kuni</item>
+        <item>Toritaka</item>
+        <item>Yasuki</item>
+    </string-array>
+    <string-array name="crane_clan">
+        <item>Asahina</item>
+        <item>Daidoji</item>
+        <item>Doji</item>
+        <item>Karita</item>
+    </string-array>
+    <string-array name="dragon_clan">
+        <item>Kitsuki</item>
+        <item>Mirumoto</item>
+        <item>Tamori</item>
+        <item>Togashi</item>
+    </string-array>
+    <string-array name="lion_clan">
+        <item>Akodo</item>
+        <item>Ikoma</item>
+        <item>Kitsu</item>
+        <item>Matsu</item>
+    </string-array>
+    <string-array name="mantis_clan">
+        <item>Kitsune</item>
+        <item>Moshi</item>
+        <item>Tsuruchi</item>
+        <item>Yoritomo</item>
+    </string-array>
+    <string-array name="phoenix_clan">
+        <item>Agasha</item>
+        <item>Asako</item>
+        <item>Isawa</item>
+        <item>Shiba</item>
+    </string-array>
+    <string-array name="scorpion_clan">
+        <item>Bayushi</item>
+        <item>Shosuro</item>
+        <item>Soshi</item>
+        <item>Yogo</item>
+    </string-array>
+    <string-array name="unicorn_clan">
+        <item>Horuichi</item>
+        <item>Ide</item>
+        <item>Uichi</item>
+        <item>Moto</item>
+        <item>Shinjo</item>
+        <item>Utaku</item>
+    </string-array>
+
+</resources>

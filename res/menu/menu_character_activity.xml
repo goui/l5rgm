@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.l5r.gm.CharacterActivity" >
+
+    <item
+        android:id="@+id/action_character_activity_cancel"
+        android:icon="@drawable/ic_thumb_down_white_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_character_activity_cancel"/>
+    <item
+        android:id="@+id/action_character_activity_ok"
+        android:icon="@drawable/ic_thumb_up_white_48dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_character_activity_ok"/>
+
+</menu>

@@ -23,8 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.l5r.gm.activity.DevicesActivity" >
+        </activity>
         <activity
-            android:name="com.l5r.gm.activity.DevicesActivity" >
+            android:name="com.l5r.gm.activity.CharacterActivity" >
         </activity>
     </application>
 
