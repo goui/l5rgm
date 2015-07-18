@@ -4,7 +4,12 @@
     <string name="app_name">L5R GM</string>
     <string name="create_new_game">Create new game</string>
     <string name="create_new_player">Create new player</string>
-    <string name="name">Name:</string>
+    <string name="name">Name</string>
+    <string name="rank">Rank</string>
+    <string name="clan">Clan</string>
+    <string name="xp">XP</string>
+    <string name="school">School</string>
+    <string name="insight">Insight</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="randomize">Randomize</string>
@@ -20,6 +25,8 @@
     <string name="create_character">Create character</string>
     <string name="see_character">See character</string>
     <string name="scanning">Scanning</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_image_content_description">Navigation drawer item</string>
@@ -31,7 +38,19 @@
     <string name="action_character_activity_ok">Confirm modifications</string>
     <string name="action_character_activity_cancel">Cancel modifications</string>
     
-    
+    <string name="stamina">Stamina</string>
+    <string name="willpower">Willpower</string>
+    <string name="strenght">Strenght</string>
+    <string name="perception">Perception</string>
+    <string name="earth">Earth</string>
+    <string name="water">Water</string>
+    <string name="air">Air</string>
+    <string name="fire">Fire</string>
+    <string name="agility">Agility</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="awareness">Awareness</string>
+    <string name="reflexes">Reflexes</string>
+    <string name="_void">Void</string>
 
     <string name="title_activity_character">CharacterActivity</string>
     <string name="title_section1">Section 1</string>

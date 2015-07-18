@@ -7,29 +7,29 @@ public class Clan {
 
 	private String _name;
 
-	private List<String> _families;
+	private List<Family> _families;
 
-	private List<String> _schools;
+	private List<School> _schools;
 
 	public Clan(String name_p) {
 		_name = name_p;
-		_families = new ArrayList<String>();
-		_schools = new ArrayList<String>();
+		_families = new ArrayList<Family>();
+		_schools = new ArrayList<School>();
 	}
 
-	public List<String> getFamilies() {
+	public List<Family> getFamilies() {
 		return _families;
 	}
 
-	public void addFamily(String family_p) {
+	public void addFamily(Family family_p) {
 		_families.add(family_p);
 	}
 
-	public List<String> getSchools() {
+	public List<School> getSchools() {
 		return _schools;
 	}
 
-	public void addSchool(String school_p) {
+	public void addSchool(School school_p) {
 		_schools.add(school_p);
 	}
 

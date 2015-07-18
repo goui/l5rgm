@@ -7,25 +7,25 @@ import com.l5r.gm.model.Constants;
 
 public class Character extends Observable {
 
-	private String _firstName;
-
-	private String _lastName;
+	private String _firstName = "Nanashi";
 
 	private int _rank;
 
 	private Clan _clan;
 
+	private Family _family;
+
 	private int _xp;
 
 	private int _pendingXpPoints;
 
-	// TODO character school
-	// private int _school;
+	private boolean _isMale = true;
 
-	// TODO character insight
-	// private int _insight;
+	private School _school;
 
-	private int _honor;
+	private int _insight;
+
+	private float _honor;
 
 	private int _glory;
 
@@ -34,32 +34,6 @@ public class Character extends Observable {
 	private int _shadowlandTaint;
 
 	private int _pv;
-
-	private int _earthPoints;
-
-	private int _stamina;
-
-	private int _willPower;
-
-	private int _waterPoints;
-
-	private int _strength;
-
-	private int _perception;
-
-	private int _airPoints;
-
-	private int _reflexes;
-
-	private int _awareness;
-
-	private int _firePoints;
-
-	private int _agility;
-
-	private int _intelligence;
-
-	private int _voidPoints;
 
 	private int[] _statistics;
 
@@ -75,10 +49,7 @@ public class Character extends Observable {
 
 	private List<Trait> _disadvantages;
 
-	public Character(String firstName_p, String lastName_p, Clan clan_p) {
-		_firstName = firstName_p;
-		_clan = clan_p;
-		_lastName = lastName_p;
+	public Character() {
 		_rank = 1;
 		_statistics = new int[Constants.NB_OF_STATS];
 	}
@@ -87,8 +58,16 @@ public class Character extends Observable {
 		return _firstName;
 	}
 
+	public void setFirstName(String firstName_p) {
+		_firstName = firstName_p;
+	}
+
 	public String getLastName() {
-		return _lastName;
+		if (_family != null) {
+			return _family.getName();
+		} else {
+			return "";
+		}
 	}
 
 	public int getRank() {
@@ -103,6 +82,64 @@ public class Character extends Observable {
 
 	public Clan getClan() {
 		return _clan;
+	}
+
+	public void setClan(Clan clan_p) {
+		_clan = clan_p;
+	}
+
+	public Family getFamily() {
+		return _family;
+	}
+
+	public void setFamily(Family family_p) {
+		if (family_p != null) {
+			_statistics[family_p.getIndexOfStat()]++;
+		}
+		if (_family != null) {
+			_statistics[_family.getIndexOfStat()]--;
+		}
+		_family = family_p;
+		computeAirPoints();
+		computeEarthPoints();
+		computeFirePoints();
+		computeWaterPoints();
+	}
+
+	public boolean isMale() {
+		return _isMale;
+	}
+
+	public void setMale(boolean isMale_p) {
+		_isMale = isMale_p;
+	}
+
+	public School getSchool() {
+		return _school;
+	}
+
+	public void setSchool(School school_p) {
+		if (school_p != null) {
+			_statistics[school_p.getIndexOfStat()]++;
+			addHonor(school_p.getHonor());
+		}
+		if (_school != null) {
+			_statistics[_school.getIndexOfStat()]--;
+			removeHonor(_school.getHonor());
+		}
+		_school = school_p;
+		computeAirPoints();
+		computeEarthPoints();
+		computeFirePoints();
+		computeWaterPoints();
+	}
+
+	public int getInsight() {
+		return _insight;
+	}
+
+	public void setInsight(int insight_p) {
+		_insight = insight_p;
 	}
 
 	public int getXp() {
@@ -125,17 +162,17 @@ public class Character extends Observable {
 		notifyObservers(Constants.PENDING_XP_CHANGED);
 	}
 
-	public int getHonor() {
+	public float getHonor() {
 		return _honor;
 	}
 
-	public void addHonor(int honor_p) {
+	public void addHonor(float honor_p) {
 		if (_honor < Constants.STAT_MAX_VALUE) {
 			_honor += honor_p;
 		}
 	}
 
-	public void removeHonor(int honor_p) {
+	public void removeHonor(float honor_p) {
 		if (_honor > Constants.STAT_MIN_VALUE) {
 			_honor -= honor_p;
 		}
@@ -200,234 +237,171 @@ public class Character extends Observable {
 	}
 
 	public int getEarthPoints() {
-		return _earthPoints;
+		return _statistics[Constants.EARTH_INDEX];
 	}
 
 	private void computeEarthPoints() {
-		_earthPoints = Math.min(_stamina, _willPower);
-		_statistics[Constants.EARTH_INDEX] = _earthPoints;
+		_statistics[Constants.EARTH_INDEX] = Math.min(_statistics[Constants.STAMINA_INDEX],
+				_statistics[Constants.WILLPOWER_INDEX]);
 		setChanged();
 		notifyObservers(Constants.EARTH_INDEX);
 	}
 
 	public int getStamina() {
-		return _stamina;
+		return _statistics[Constants.STAMINA_INDEX];
 	}
 
-	public void addStamina(int stamina_p) {
-		_stamina += stamina_p;
+	public void addStamina() {
+		_statistics[Constants.STAMINA_INDEX]++;
 		computeEarthPoints();
-		computePendingXpPointsFromStamina(stamina_p);
-		_statistics[Constants.STAMINA_INDEX] = _stamina;
+		computePendingXpPoints(Constants.STAMINA_INDEX);
 		setChanged();
 		notifyObservers(Constants.STAMINA_INDEX);
 	}
 
-	private void computePendingXpPointsFromStamina(int stamina_p) {
-		// TODO character pending xp stamina
+	private void computePendingXpPoints(int statIndex_p) {
+		// TODO character pending xp
 
 		setChanged();
 		notifyObservers(Constants.PENDING_XP_CHANGED);
 	}
 
 	public int getWillPower() {
-		return _willPower;
+		return _statistics[Constants.WILLPOWER_INDEX];
 	}
 
-	public void addWillPower(int willPower_p) {
-		_willPower += willPower_p;
+	public void addWillPower() {
+		_statistics[Constants.WILLPOWER_INDEX]++;
 		computeEarthPoints();
-		computePendingXpPointsFromWillPower(willPower_p);
-		_statistics[Constants.WILLPOWER_INDEX] = _willPower;
+		computePendingXpPoints(Constants.WILLPOWER_INDEX);
 		setChanged();
 		notifyObservers(Constants.WILLPOWER_INDEX);
 	}
 
-	private void computePendingXpPointsFromWillPower(int willPower_p) {
-		// TODO character pending xp willpower
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getWaterPoints() {
-		return _waterPoints;
+		return _statistics[Constants.WATER_INDEX];
 	}
 
 	private void computeWaterPoints() {
-		_waterPoints = Math.min(_strength, _perception);
-		_statistics[Constants.WATER_INDEX] = _waterPoints;
+		_statistics[Constants.WATER_INDEX] = Math.min(_statistics[Constants.STRENGTH_INDEX],
+				_statistics[Constants.PERCEPTION_INDEX]);
 		setChanged();
 		notifyObservers(Constants.WATER_INDEX);
 	}
 
 	public int getStrength() {
-		return _strength;
+		return _statistics[Constants.STRENGTH_INDEX];
 	}
 
-	public void addStrength(int strength_p) {
-		_strength += strength_p;
+	public void addStrength() {
+		_statistics[Constants.STRENGTH_INDEX]++;
 		computeWaterPoints();
-		computePendingXpPointsFromStrength(strength_p);
-		_statistics[Constants.STRENGTH_INDEX] = _strength;
+		computePendingXpPoints(Constants.STRENGTH_INDEX);
 		setChanged();
 		notifyObservers(Constants.STRENGTH_INDEX);
 	}
 
-	private void computePendingXpPointsFromStrength(int strength_p) {
-		// TODO character pending xp strength
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getPerception() {
-		return _perception;
+		return _statistics[Constants.PERCEPTION_INDEX];
 	}
 
-	public void addPerception(int perception_p) {
-		_perception += perception_p;
+	public void addPerception() {
+		_statistics[Constants.PERCEPTION_INDEX]++;
 		computeWaterPoints();
-		computePendingXpPointsFromPerception(perception_p);
-		_statistics[Constants.PERCEPTION_INDEX] = _perception;
+		computePendingXpPoints(Constants.PERCEPTION_INDEX);
 		setChanged();
 		notifyObservers(Constants.PERCEPTION_INDEX);
 	}
 
-	private void computePendingXpPointsFromPerception(int perception_p) {
-		// TODO character pending xp perception
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getAirPoints() {
-		return _airPoints;
+		return _statistics[Constants.AIR_INDEX];
 	}
 
 	private void computeAirPoints() {
-		_airPoints = Math.min(_reflexes, _awareness);
-		_statistics[Constants.AIR_INDEX] = _airPoints;
+		_statistics[Constants.AIR_INDEX] = Math.min(_statistics[Constants.REFLEXES_INDEX],
+				_statistics[Constants.AWARENESS_INDEX]);
 		setChanged();
 		notifyObservers(Constants.AIR_INDEX);
 	}
 
 	public int getReflexes() {
-		return _reflexes;
+		return _statistics[Constants.REFLEXES_INDEX];
 	}
 
-	public void addReflexes(int reflexes_p) {
-		_reflexes += reflexes_p;
+	public void addReflexes() {
+		_statistics[Constants.REFLEXES_INDEX]++;
 		computeAirPoints();
-		computePendingXpPointsFromReflexes(reflexes_p);
-		_statistics[Constants.REFLEXES_INDEX] = _reflexes;
+		computePendingXpPoints(Constants.REFLEXES_INDEX);
 		setChanged();
 		notifyObservers(Constants.REFLEXES_INDEX);
 	}
 
-	private void computePendingXpPointsFromReflexes(int reflexes_p) {
-		// TODO character pending xp reflexes
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getAwareness() {
-		return _awareness;
+		return _statistics[Constants.AWARENESS_INDEX];
 	}
 
-	public void addAwareness(int awareness_p) {
-		_awareness += awareness_p;
+	public void addAwareness() {
+		_statistics[Constants.AWARENESS_INDEX]++;
 		computeAirPoints();
-		computePendingXpPointsFromAwareness(awareness_p);
-		_statistics[Constants.AWARENESS_INDEX] = _awareness;
+		computePendingXpPoints(Constants.AWARENESS_INDEX);
 		setChanged();
 		notifyObservers(Constants.AWARENESS_INDEX);
 	}
 
-	private void computePendingXpPointsFromAwareness(int awareness_p) {
-		// TODO character pending xp awareness
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getFirePoints() {
-		return _firePoints;
+		return _statistics[Constants.FIRE_INDEX];
 	}
 
 	private void computeFirePoints() {
-		_firePoints = Math.min(_agility, _intelligence);
-		_statistics[Constants.FIRE_INDEX] = _firePoints;
+		_statistics[Constants.FIRE_INDEX] = Math.min(_statistics[Constants.AGILITY_INDEX],
+				_statistics[Constants.INTELLIGENCE_INDEX]);
 		setChanged();
 		notifyObservers(Constants.FIRE_INDEX);
 	}
 
 	public int getAgility() {
-		return _agility;
+		return _statistics[Constants.AGILITY_INDEX];
 	}
 
-	public void addAgility(int agility_p) {
-		_agility += agility_p;
+	public void addAgility() {
+		_statistics[Constants.AGILITY_INDEX]++;
 		computeFirePoints();
-		computePendingXpPointsFromAgility(agility_p);
-		_statistics[Constants.AGILITY_INDEX] = _agility;
+		computePendingXpPoints(Constants.AGILITY_INDEX);
 		setChanged();
 		notifyObservers(Constants.AGILITY_INDEX);
 	}
 
-	private void computePendingXpPointsFromAgility(int agility_p) {
-		// TODO character pending xp agility
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getIntelligence() {
-		return _intelligence;
+		return _statistics[Constants.INTELLIGENCE_INDEX];
 	}
 
-	public void addIntelligence(int intelligence_p) {
-		_intelligence += intelligence_p;
+	public void addIntelligence() {
+		_statistics[Constants.INTELLIGENCE_INDEX]++;
 		computeFirePoints();
-		computePendingXpPointsFromIntelligence(intelligence_p);
-		_statistics[Constants.INTELLIGENCE_INDEX] = _intelligence;
+		computePendingXpPoints(Constants.INTELLIGENCE_INDEX);
 		setChanged();
 		notifyObservers(Constants.INTELLIGENCE_INDEX);
 	}
 
-	private void computePendingXpPointsFromIntelligence(int intelligence_p) {
-		// TODO character pending xp intelligence
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public int getVoidPoints() {
-		return _voidPoints;
+		return _statistics[Constants.VOID_INDEX];
 	}
 
-	public void addVoidPoints(int voidPoints_p) {
-		if (_voidPoints < Constants.STAT_MAX_VALUE - 1) {
-			_voidPoints += voidPoints_p;
-			computePendingXpPointsFromVoid(voidPoints_p);
-			_statistics[Constants.VOID_INDEX] = _voidPoints;
+	public void addVoidPoints() {
+		if (_statistics[Constants.VOID_INDEX] < Constants.STAT_MAX_VALUE - 1) {
+			_statistics[Constants.VOID_INDEX]++;
+			computePendingXpPoints(Constants.VOID_INDEX);
 			setChanged();
 			notifyObservers(Constants.VOID_INDEX);
 		}
 	}
 
-	private void computePendingXpPointsFromVoid(int voidPoints_p) {
-		// TODO character pending xp void
-
-		setChanged();
-		notifyObservers(Constants.PENDING_XP_CHANGED);
-	}
-
 	public void removeVoidPoints(int voidPoints_p) {
-		if (_voidPoints > Constants.STAT_MIN_VALUE) {
-			_voidPoints -= voidPoints_p;
-			_statistics[Constants.VOID_INDEX] = _voidPoints;
+		if (_statistics[Constants.VOID_INDEX] > Constants.STAT_MIN_VALUE) {
+			_statistics[Constants.VOID_INDEX]--;
+			computePendingXpPoints(Constants.VOID_INDEX);
+			setChanged();
+			notifyObservers(Constants.VOID_INDEX);
 		}
 	}
 
@@ -502,15 +476,16 @@ public class Character extends Observable {
 		boolean equals = false;
 		if (o_p instanceof Arrow) {
 			Character obj = (Character) o_p;
-			equals = obj.getFirstName().equals(_firstName) && obj.getLastName().equals(_lastName)
-					&& obj.getRank() == _rank && obj.getXp() == _xp;
+			equals = obj.getFirstName().equals(_firstName)
+					&& obj.getLastName().equals(_family.getName()) && obj.getRank() == _rank
+					&& obj.getXp() == _xp;
 		}
 		return equals;
 	}
 
 	@Override
 	public String toString() {
-		return _lastName + " " + _firstName + ", Rank: " + _rank;
+		return _family.getName() + " " + _firstName + ", Rank: " + _rank;
 	}
 
 }

@@ -59,7 +59,7 @@
         android:layout_toRightOf="@id/fragment_character_creation_name_text"
         android:textSize="18sp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/fragment_character_creation_firstname_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,16 +70,39 @@
         android:inputType="textPersonName"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/fragment_character_creation_randomize_button"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/fragment_character_creation_gender_buttons"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/fragment_character_creation_male_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/fragment_character_creation_female_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/female" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/fragment_character_creation_randomize_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/fragment_character_creation_gender_buttons"
         android:gravity="center"
         android:text="@string/randomize"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
 </RelativeLayout>

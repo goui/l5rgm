@@ -5,6 +5,7 @@ public class Constants {
 	public static final int STAT_MIN_VALUE = 0;
 	public static final int STAT_MAX_VALUE = 10;
 
+	public static final int NB_OF_CLANS = 8;
 	public static final int NB_OF_STATS = 13;
 	public static final int EARTH_INDEX = 0;
 	public static final int STAMINA_INDEX = 1;

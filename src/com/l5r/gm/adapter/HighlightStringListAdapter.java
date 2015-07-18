@@ -31,6 +31,7 @@ public class HighlightStringListAdapter extends BaseAdapter {
 
 	public void setList(String[] list_p) {
 		_list = list_p;
+		_selectedIndex = -1;
 		notifyDataSetChanged();
 	}
 
